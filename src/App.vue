@@ -4,22 +4,22 @@
     <div>
       <button @click="testDomClick">Test DOM Click</button>
     </div>
-    <ErrorInCustomEventHandler @test="testCustomEvent"/>
+    <CustomEventComponent v-test @test="testCustomEvent"/>
     <h1>{{ count }} / {{ errorInComputed }}</h1>
-    <ErrorInTemplate />
+    <ErrorInComponent />
     <NoSuchTemplate />
   </div>
 </template>
 
 <script>
-import ErrorInTemplate from "./components/ErrorInTemplate.vue";
-import ErrorInCustomEventHandler from "./components/ErrorInCustomEventHandler.vue";
+import ErrorInComponent from "./components/ErrorInComponent.vue";
+import CustomEventComponent from "./components/CustomEventComponent.vue";
 
 export default {
   name: "app",
   components: {
-    ErrorInTemplate,
-    ErrorInCustomEventHandler
+    ErrorInComponent,
+    CustomEventComponent
   },
   data() {
     return {
@@ -29,34 +29,47 @@ export default {
   computed: {
     errorInComputed() {
       if (this.count > 0) {
-        throw new Error("from Computed Property");
+        throw new Error("from computed");
       } else {
         return this.count;
       }
     }
   },
+  directives: {
+    test: {
+      inserted() {
+        throw new Error("from directive hook");
+      }
+    }
+  },
   watch: {
     count() {
-      throw new Error("from Watcher");
+      throw new Error("from watcher for data property");
+    },
+    errorInComputed() {
+      throw new Error("from watcher for computed property");
     }
   },
   methods: {
     testDomClick() {
       this.count++;
       this.$nextTick(() => {
-        throw new Error("from nextTick");
+        throw new Error("from nextTick callback");
       });
-      throw new Error("from DOM Event Handler");
+      throw new Error("from DOM event handler");
     },
     testCustomEvent() {
-      throw new Error("from Component Custom Event Handler");
+      throw new Error("from custom event handler");
     }
   },
   created() {
-    throw new Error("from Lifecycle Hook");
+    setTimeout(() => {
+      throw new Error("from setTimeout callback");
+    });
+    throw new Error("from lifecycle hook");
   },
   async mounted() {
-    throw new Error("from Async function");
+    throw new Error("from async function");
   }
 };
 </script>

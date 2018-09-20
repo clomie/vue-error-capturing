@@ -4,6 +4,9 @@
 
 <script>
 export default {
-  name: "error-in-template"
+  name: "error-in-template",
+  data() {
+    throw new Error("from data function");
+  }
 };
 </script>

@@ -5,11 +5,9 @@ Vue.config.productionTip = false;
 
 Vue.config.errorHandler = (err, vm, info) => {
   console.log(
-    "Error Captured in Vue.config.errorHandler",
+    `Error Captured in Vue.config.errorHandler: ${info}`,
     "\n",
-    err.stack || err,
-    "\n",
-    info
+    err.stack || err
   );
 };
 Vue.config.warnHandler = (msg, vm, trace) => {

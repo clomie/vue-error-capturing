@@ -1,12 +1,12 @@
 <template>
   <div>
-    <button @click="test">Test Custom Event Handler</button>
+    <button @click="test">Test Custom Event</button>
   </div>
 </template>
 
 <script>
 export default {
-  name: "error-in-custom-event-handler",
+  name: "custom-event-component",
   methods: {
     test() {
       this.$emit("test");
