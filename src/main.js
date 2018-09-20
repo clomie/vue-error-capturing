@@ -12,14 +12,8 @@ Vue.config.errorHandler = (err, vm, info) => {
     info
   );
 };
-Vue.config.warnHandler = (err, vm, info) => {
-  console.log(
-    "Warn Captured in Vue.config.warnHandler",
-    "\n",
-    err.stack || err,
-    "\n",
-    info
-  );
+Vue.config.warnHandler = (msg, vm, trace) => {
+  console.log(`Warn Captured in Vue.config.warnHandler\n${msg}\n${trace}`);
 };
 window.addEventListener("error", event => {
   console.log("Error Captured in error EventListener", event.error);

@@ -2,10 +2,10 @@
   <div id="app">
     <h1>Test Error / Warn Capturing</h1>
     <div>
-      <button @click="increment">increment</button>
+      <button @click="testDomClick">Test DOM Click</button>
     </div>
-    <h1>count: {{ count }}</h1>
-    <h1>errorInComputed: {{ errorInComputed }}</h1>
+    <ErrorInCustomEventHandler @test="testCustomEvent"/>
+    <h1>{{ count }} / {{ errorInComputed }}</h1>
     <ErrorInTemplate />
     <NoSuchTemplate />
   </div>
@@ -13,11 +13,13 @@
 
 <script>
 import ErrorInTemplate from "./components/ErrorInTemplate.vue";
+import ErrorInCustomEventHandler from "./components/ErrorInCustomEventHandler.vue";
 
 export default {
   name: "app",
   components: {
-    ErrorInTemplate
+    ErrorInTemplate,
+    ErrorInCustomEventHandler
   },
   data() {
     return {
@@ -26,7 +28,7 @@ export default {
   },
   computed: {
     errorInComputed() {
-      if (this.count % 2) {
+      if (this.count > 0) {
         throw new Error("from Computed Property");
       } else {
         return this.count;
@@ -39,9 +41,15 @@ export default {
     }
   },
   methods: {
-    increment() {
+    testDomClick() {
       this.count++;
+      this.$nextTick(() => {
+        throw new Error("from nextTick");
+      });
       throw new Error("from DOM Event Handler");
+    },
+    testCustomEvent() {
+      throw new Error("from Component Custom Event Handler");
     }
   },
   created() {
