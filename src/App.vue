@@ -1,17 +1,54 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <h1>Test Error / Warn Capturing</h1>
+    <div>
+      <button @click="increment">increment</button>
+    </div>
+    <h1>count: {{ count }}</h1>
+    <h1>errorInComputed: {{ errorInComputed }}</h1>
+    <ErrorInTemplate />
+    <NoSuchTemplate />
   </div>
 </template>
 
 <script>
-import HelloWorld from "./components/HelloWorld.vue";
+import ErrorInTemplate from "./components/ErrorInTemplate.vue";
 
 export default {
   name: "app",
   components: {
-    HelloWorld
+    ErrorInTemplate
+  },
+  data() {
+    return {
+      count: 0
+    };
+  },
+  computed: {
+    errorInComputed() {
+      if (this.count % 2) {
+        throw new Error("from Computed Property");
+      } else {
+        return this.count;
+      }
+    }
+  },
+  watch: {
+    count() {
+      throw new Error("from Watcher");
+    }
+  },
+  methods: {
+    increment() {
+      this.count++;
+      throw new Error("from DOM Event Handler");
+    }
+  },
+  created() {
+    throw new Error("from Lifecycle Hook");
+  },
+  async mounted() {
+    throw new Error("from Async function");
   }
 };
 </script>
