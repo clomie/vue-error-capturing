@@ -1,21 +1,24 @@
 # vue-error-capturing
 
-## Project setup
-```
-yarn install
-```
+This repository is for testing `Vue.config.errorHandler` and `Vue.config.warnHandler`.
 
-### Compiles and hot-reloads for development
-```
-yarn run serve
-```
+Test URL: https://clomie.github.io/vue-error-capturing/
 
-### Compiles and minifies for production
-```
-yarn run build
-```
+## Vue.config.errorHandler can capture error thrown in
 
-### Lints and fixes files
-```
-yarn run lint
-```
+- render
+- data function
+- watcher function
+- lifecycle hooks
+- directive hooks
+- custom event handlers
+- nextTick callback
+
+https://github.com/search?l=&q=handleError+repo%3Avuejs%2Fvue+path%3A%2Fsrc%2Fcore&type=Code
+
+## Vue.config.errorHandler can NOT capture error thrown in
+
+- DOM native event handlers
+- setTimeout/setInterval callback
+- async functions
+- Promise callback ...etc
