@@ -1,7 +1,5 @@
 <template>
-  <div>
-    <button @click="test">Test Custom Event</button>
-  </div>
+  <button @click="test">Error in Custom Event</button>
 </template>
 
 <script>

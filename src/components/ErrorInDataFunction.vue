@@ -1,10 +1,10 @@
 <template>
-  <h1>{{ noSuchProperty }}</h1>
+  <div>error-in-data-function</div>
 </template>
 
 <script>
 export default {
-  name: "error-in-template",
+  name: "error-in-data-function",
   data() {
     throw new Error("from data function");
   }

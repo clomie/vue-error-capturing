@@ -4,23 +4,16 @@ import App from "./App.vue";
 Vue.config.productionTip = false;
 
 Vue.config.errorHandler = (err, vm, info) => {
-  console.log(
-    `Error Captured in Vue.config.errorHandler: ${info}`,
-    "\n",
-    err.stack || err
-  );
+  console.log(`Captured in Vue.config.errorHandler: ${info} ${err}`);
 };
 Vue.config.warnHandler = (msg, vm, trace) => {
-  console.log(`Warn Captured in Vue.config.warnHandler\n${msg}\n${trace}`);
+  console.log(`Captured in Vue.config.warnHandler\n${msg}${trace}`);
 };
 window.addEventListener("error", event => {
-  console.log("Error Captured in error EventListener", event.error);
+  console.log(`Captured in error EventListener: ${event.error}`);
 });
 window.addEventListener("unhandledrejection", event => {
-  console.log(
-    "Error Captured in unhandledrejection EventListener",
-    event.reason
-  );
+  console.log(`Captured in unhandledrejection EventListener: ${event.reason}`);
 });
 
 new Vue({
