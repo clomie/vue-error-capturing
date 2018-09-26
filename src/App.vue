@@ -2,69 +2,67 @@
   <div id="app">
     <h1>Test Error / Warn Capturing</h1>
     <div class="buttons">
-      <button @click="testComponent = 'ErrorInAsyncFunction'" :disabled="testComponent === 'ErrorInAsyncFunction'">Error in Async Funtion</button>
-      <button @click="testComponent = 'ErrorInComputedFunction'" :disabled="testComponent === 'ErrorInComputedFunction'">Error in Computed Function</button>
-      <button @click="testComponent = 'ErrorInDataFunction'" :disabled="testComponent === 'ErrorInDataFunction'">Error in Data Function</button>
-      <button @click="testComponent = 'ErrorInDirectiveHook'" :disabled="testComponent === 'ErrorInDirectiveHook'">Error in Directive Hook</button>
-      <button @click="testComponent = 'ErrorInLifecycleHook'" :disabled="testComponent === 'ErrorInLifecycleHook'">Error in Lifecycle Hook</button>
-      <button @click="testComponent = 'ErrorInNextTickCallback'" :disabled="testComponent === 'ErrorInNextTickCallback'">Error in 'nextTick' Callback</button>
-      <button @click="testComponent = 'ErrorInSetTimeoutCallback'" :disabled="testComponent === 'ErrorInSetTimeoutCallback'">Error in 'setTimeout' Callback</button>
-      <button @click="testComponent = 'ErrorInWatcherFunction'" :disabled="testComponent === 'ErrorInWatcherFunction'">Error in Watcher Function</button>
-      <button @click="testComponent = 'ErrorNoSuchComponent'" :disabled="testComponent === 'ErrorNoSuchComponent'">No Such Component</button>
-      <button @click="testComponent = 'ErrorNoSuchProperty'" :disabled="testComponent === 'ErrorNoSuchProperty'">No Such Property</button>
+      <button @click="test = 'ErrorCapturedInComponent'" :disabled="test === 'ErrorCapturedInComponent'">Error Captured in Component</button>
+      <button @click="test = 'ErrorInAsyncFunction'" :disabled="test === 'ErrorInAsyncFunction'">Error in Async Funtion</button>
+      <button @click="test = 'ErrorInComputedFunction'" :disabled="test === 'ErrorInComputedFunction'">Error in Computed Function</button>
+      <button @click="test = 'ErrorInDataFunction'" :disabled="test === 'ErrorInDataFunction'">Error in Data Function</button>
+      <button @click="test = 'ErrorInDirectiveHook'" :disabled="test === 'ErrorInDirectiveHook'">Error in Directive Hook</button>
+      <button @click="test = 'ErrorInFilterFunction'" :disabled="test === 'ErrorInFilterFunction'">Error in Filter Function</button>
+      <button @click="test = 'ErrorInLifecycleHook'" :disabled="test === 'ErrorInLifecycleHook'">Error in Lifecycle Hook</button>
+      <button @click="test = 'ErrorInMethodCalledInTemplate'" :disabled="test === 'ErrorInMethodCalledInTemplate'">Error in Method Called in Template</button>
+      <button @click="test = 'ErrorInNextTickCallback'" :disabled="test === 'ErrorInNextTickCallback'">Error in 'nextTick' Callback</button>
+      <button @click="test = 'ErrorInSetTimeoutCallback'" :disabled="test === 'ErrorInSetTimeoutCallback'">Error in 'setTimeout' Callback</button>
+      <button @click="test = 'ErrorInWatcherFunction'" :disabled="test === 'ErrorInWatcherFunction'">Error in Watcher Function</button>
+      <button @click="test = 'ErrorNoSuchComponent'" :disabled="test === 'ErrorNoSuchComponent'">No Such Component</button>
+      <button @click="test = 'ErrorNoSuchProperty'" :disabled="test === 'ErrorNoSuchProperty'">No Such Property</button>
       <button @click="testDomClick">Error in DOM Event Handler</button>
       <CustomEventComponent @test="testCustomEvent">Error in Custom Event Handler</CustomEventComponent>
     </div>
     <div>
-      <component v-if="testComponent" :is="testComponent" />
+      <component v-if="test" :is="test" />
     </div>
   </div>
 </template>
 
 <script>
 import CustomEventComponent from "./components/CustomEventComponent";
+import ErrorCapturedInComponent from "./components/ErrorCapturedInComponent";
 import ErrorInAsyncFunction from "./components/ErrorInAsyncFunction";
 import ErrorInComputedFunction from "./components/ErrorInComputedFunction";
 import ErrorInDataFunction from "./components/ErrorInDataFunction";
 import ErrorInDirectiveHook from "./components/ErrorInDirectiveHook";
+import ErrorInFilterFunction from "./components/ErrorInFilterFunction";
 import ErrorInLifecycleHook from "./components/ErrorInLifecycleHook";
+import ErrorInMethodCalledInTemplate from "./components/ErrorInMethodCalledInTemplate";
 import ErrorInNextTickCallback from "./components/ErrorInNextTickCallback";
 import ErrorInSetTimeoutCallback from "./components/ErrorInSetTimeoutCallback";
 import ErrorInWatcherFunction from "./components/ErrorInWatcherFunction";
 import ErrorNoSuchComponent from "./components/ErrorNoSuchComponent";
 import ErrorNoSuchProperty from "./components/ErrorNoSuchProperty";
 
-const components = {
-  CustomEventComponent,
-  ErrorInAsyncFunction,
-  ErrorInComputedFunction,
-  ErrorInDataFunction,
-  ErrorInDirectiveHook,
-  ErrorInLifecycleHook,
-  ErrorInNextTickCallback,
-  ErrorInSetTimeoutCallback,
-  ErrorInWatcherFunction,
-  ErrorNoSuchComponent,
-  ErrorNoSuchProperty
-};
-
 export default {
   name: "app",
-  components,
+  components: {
+    CustomEventComponent,
+    ErrorCapturedInComponent,
+    ErrorInAsyncFunction,
+    ErrorInComputedFunction,
+    ErrorInDataFunction,
+    ErrorInDirectiveHook,
+    ErrorInLifecycleHook,
+    ErrorInFilterFunction,
+    ErrorInNextTickCallback,
+    ErrorInMethodCalledInTemplate,
+    ErrorInSetTimeoutCallback,
+    ErrorInWatcherFunction,
+    ErrorNoSuchComponent,
+    ErrorNoSuchProperty
+  },
   data() {
     return {
-      testComponent: null,
-      components: Object.keys(components).filter(s => s.startsWith("Error"))
+      test: null
     };
   },
-  // watch: {
-  //   count() {
-  //     throw new Error("from watcher for data property");
-  //   },
-  //   errorInComputed() {
-  //     throw new Error("from watcher for computed property");
-  //   }
-  // },
   methods: {
     testDomClick() {
       throw new Error("from DOM event handler");
