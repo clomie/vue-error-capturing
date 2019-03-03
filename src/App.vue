@@ -9,10 +9,10 @@
         Error Captured in Component
       </button>
       <button
-        @click="test = 'ErrorInAsyncFunction'"
-        :disabled="test === 'ErrorInAsyncFunction'"
+        @click="test = 'ErrorInAsyncLifecycleHook'"
+        :disabled="test === 'ErrorInAsyncLifecycleHook'"
       >
-        Error in Async Funtion
+        Error in Async Lifecycle Hook
       </button>
       <button
         @click="test = 'ErrorInComputedFunction'"
@@ -63,6 +63,12 @@
         Error in 'setTimeout' Callback
       </button>
       <button
+        @click="test = 'ErrorInUnreturnedPromise'"
+        :disabled="test === 'ErrorInUnreturnedPromise'"
+      >
+        Error in Unreturned Promise
+      </button>
+      <button
         @click="test = 'ErrorInWatcherFunction'"
         :disabled="test === 'ErrorInWatcherFunction'"
       >
@@ -94,7 +100,7 @@
 <script>
 import CustomEventComponent from "./components/CustomEventComponent";
 import ErrorCapturedInComponent from "./components/ErrorCapturedInComponent";
-import ErrorInAsyncFunction from "./components/ErrorInAsyncFunction";
+import ErrorInAsyncLifecycleHook from "./components/ErrorInAsyncLifecycleHook";
 import ErrorInComputedFunction from "./components/ErrorInComputedFunction";
 import ErrorInDataFunction from "./components/ErrorInDataFunction";
 import ErrorInDirectiveHook from "./components/ErrorInDirectiveHook";
@@ -103,6 +109,7 @@ import ErrorInLifecycleHook from "./components/ErrorInLifecycleHook";
 import ErrorInMethodCalledInTemplate from "./components/ErrorInMethodCalledInTemplate";
 import ErrorInNextTickCallback from "./components/ErrorInNextTickCallback";
 import ErrorInSetTimeoutCallback from "./components/ErrorInSetTimeoutCallback";
+import ErrorInUnreturnedPromise from "./components/ErrorInUnreturnedPromise";
 import ErrorInWatcherFunction from "./components/ErrorInWatcherFunction";
 import ErrorNoSuchComponent from "./components/ErrorNoSuchComponent";
 import ErrorNoSuchProperty from "./components/ErrorNoSuchProperty";
@@ -112,7 +119,7 @@ export default {
   components: {
     CustomEventComponent,
     ErrorCapturedInComponent,
-    ErrorInAsyncFunction,
+    ErrorInAsyncLifecycleHook,
     ErrorInComputedFunction,
     ErrorInDataFunction,
     ErrorInDirectiveHook,
@@ -121,6 +128,7 @@ export default {
     ErrorInNextTickCallback,
     ErrorInMethodCalledInTemplate,
     ErrorInSetTimeoutCallback,
+    ErrorInUnreturnedPromise,
     ErrorInWatcherFunction,
     ErrorNoSuchComponent,
     ErrorNoSuchProperty
