@@ -2,21 +2,88 @@
   <div id="app">
     <h1>Test Error / Warn Capturing</h1>
     <div class="buttons">
-      <button @click="test = 'ErrorCapturedInComponent'" :disabled="test === 'ErrorCapturedInComponent'">Error Captured in Component</button>
-      <button @click="test = 'ErrorInAsyncFunction'" :disabled="test === 'ErrorInAsyncFunction'">Error in Async Funtion</button>
-      <button @click="test = 'ErrorInComputedFunction'" :disabled="test === 'ErrorInComputedFunction'">Error in Computed Function</button>
-      <button @click="test = 'ErrorInDataFunction'" :disabled="test === 'ErrorInDataFunction'">Error in Data Function</button>
-      <button @click="test = 'ErrorInDirectiveHook'" :disabled="test === 'ErrorInDirectiveHook'">Error in Directive Hook</button>
-      <button @click="test = 'ErrorInFilterFunction'" :disabled="test === 'ErrorInFilterFunction'">Error in Filter Function</button>
-      <button @click="test = 'ErrorInLifecycleHook'" :disabled="test === 'ErrorInLifecycleHook'">Error in Lifecycle Hook</button>
-      <button @click="test = 'ErrorInMethodCalledInTemplate'" :disabled="test === 'ErrorInMethodCalledInTemplate'">Error in Method Called in Template</button>
-      <button @click="test = 'ErrorInNextTickCallback'" :disabled="test === 'ErrorInNextTickCallback'">Error in 'nextTick' Callback</button>
-      <button @click="test = 'ErrorInSetTimeoutCallback'" :disabled="test === 'ErrorInSetTimeoutCallback'">Error in 'setTimeout' Callback</button>
-      <button @click="test = 'ErrorInWatcherFunction'" :disabled="test === 'ErrorInWatcherFunction'">Error in Watcher Function</button>
-      <button @click="test = 'ErrorNoSuchComponent'" :disabled="test === 'ErrorNoSuchComponent'">No Such Component</button>
-      <button @click="test = 'ErrorNoSuchProperty'" :disabled="test === 'ErrorNoSuchProperty'">No Such Property</button>
+      <button
+        @click="test = 'ErrorCapturedInComponent'"
+        :disabled="test === 'ErrorCapturedInComponent'"
+      >
+        Error Captured in Component
+      </button>
+      <button
+        @click="test = 'ErrorInAsyncFunction'"
+        :disabled="test === 'ErrorInAsyncFunction'"
+      >
+        Error in Async Funtion
+      </button>
+      <button
+        @click="test = 'ErrorInComputedFunction'"
+        :disabled="test === 'ErrorInComputedFunction'"
+      >
+        Error in Computed Function
+      </button>
+      <button
+        @click="test = 'ErrorInDataFunction'"
+        :disabled="test === 'ErrorInDataFunction'"
+      >
+        Error in Data Function
+      </button>
+      <button
+        @click="test = 'ErrorInDirectiveHook'"
+        :disabled="test === 'ErrorInDirectiveHook'"
+      >
+        Error in Directive Hook
+      </button>
+      <button
+        @click="test = 'ErrorInFilterFunction'"
+        :disabled="test === 'ErrorInFilterFunction'"
+      >
+        Error in Filter Function
+      </button>
+      <button
+        @click="test = 'ErrorInLifecycleHook'"
+        :disabled="test === 'ErrorInLifecycleHook'"
+      >
+        Error in Lifecycle Hook
+      </button>
+      <button
+        @click="test = 'ErrorInMethodCalledInTemplate'"
+        :disabled="test === 'ErrorInMethodCalledInTemplate'"
+      >
+        Error in Method Called in Template
+      </button>
+      <button
+        @click="test = 'ErrorInNextTickCallback'"
+        :disabled="test === 'ErrorInNextTickCallback'"
+      >
+        Error in 'nextTick' Callback
+      </button>
+      <button
+        @click="test = 'ErrorInSetTimeoutCallback'"
+        :disabled="test === 'ErrorInSetTimeoutCallback'"
+      >
+        Error in 'setTimeout' Callback
+      </button>
+      <button
+        @click="test = 'ErrorInWatcherFunction'"
+        :disabled="test === 'ErrorInWatcherFunction'"
+      >
+        Error in Watcher Function
+      </button>
+      <button
+        @click="test = 'ErrorNoSuchComponent'"
+        :disabled="test === 'ErrorNoSuchComponent'"
+      >
+        No Such Component
+      </button>
+      <button
+        @click="test = 'ErrorNoSuchProperty'"
+        :disabled="test === 'ErrorNoSuchProperty'"
+      >
+        No Such Property
+      </button>
       <button @click="testDomClick">Error in DOM Event Handler</button>
-      <CustomEventComponent @test="testCustomEvent">Error in Custom Event Handler</CustomEventComponent>
+      <CustomEventComponent @test="testCustomEvent">
+        Error in Custom Event Handler
+      </CustomEventComponent>
     </div>
     <div>
       <component v-if="test" :is="test" />
